@@ -1,0 +1,19 @@
+#DEBUG is the most important setting used natively by Django, set it to False if this is production environment
+DEBUG='True'
+
+# ENV is 'local' or 'production'. It indicates if we use gunicorn and nginx
+ENV=local
+
+#DATABASE
+DATABASE_ENGINE=django.db.backends.postgresql
+DATABASE_NAME=
+DATABASE_HOST=
+DATABASE_PORT=5432
+DATABASE_USERNAME=
+DATABASE_PASSWORD=
+
+# DJANGO_SECRET_KEY Django secret key
+DJANGO_SECRET_KEY=''
+
+#ALLOWED_HOSTS should be separated by comma in a form ALLOWED_HOSTS=example.com,nextexample.com, if you want to allow all put ALLOWED_HOSTS=*
+ALLOWED_HOSTS=localhost,127.0.0.1,[::1]
