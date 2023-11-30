@@ -6,7 +6,7 @@ from django.http import Http404, HttpResponse, JsonResponse, request
 
 from rest_framework.decorators import api_view
 
-from core.utils import get_folder_meta_data, hash_file, classify_document
+from core.utils import get_folder_meta_data, hash_file, classify_document, build_tree
 from core.models import Document
 
 
@@ -20,10 +20,8 @@ def analyze_folder(request):
     if not os.path.exists(folder_path) or not os.path.isdir(folder_path):
         return JsonResponse({'error': 'Invalid folder path'})
 
-    data = {
-        'meta': get_folder_meta_data(folder_path),
-        'items': os.listdir(folder_path)
-    }
+    data = build_tree(folder_path)
+    data['meta'] = get_folder_meta_data(folder_path)
 
     return JsonResponse({'data': data, 'message': 'Folder insight processed successfully'})
 
@@ -46,7 +44,7 @@ def document_classification(request):
         hash=hash
     )
 
-    if created:
+    if created or not document.classification_label:
         classify_document(document)
 
     data = {

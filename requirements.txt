@@ -3,6 +3,8 @@ python-dotenv==0.21.0
 psycopg2-binary==2.9.9
 dateutils==0.6.12
 djangorestframework==3.14.0
+nltk==3.8.1
+textract==1.6.5
 
 tensorflow==2.15.0
 transformers==4.35.2
